@@ -3,9 +3,9 @@ import React from 'react'
 import MedicsAPI from "../MediciAPI";
 import MyMedia from "./MyMedia";
 
-const AllMedics = () => (
+const MedicsByLoc = (props) => (
     <div>
-        { MedicsAPI.all().map(
+        { MedicsAPI.getByIdLoc(parseInt(props.match.params.idLoc)).map(
             function(medic){
                 return <MyMedia medic = {medic} key = {medic.id} onClick = {handleClick}/>
             })
@@ -16,7 +16,6 @@ const AllMedics = () => (
 function handleClick(id) {
     console.log("adssssssad " + id);
 
-
 }
 
-export default AllMedics;
+export default MedicsByLoc;
