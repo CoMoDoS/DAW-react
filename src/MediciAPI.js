@@ -4,28 +4,28 @@ const MediciAPI = {
         name: "Simon Bailey",
         spec: "Cardiolog",
         year: "2018",
-        picture : "https://i41.photobucket.com/albums/e256/rider_of_the_dragon/pup5ox5o-1.jpg",
+        picture : "/images/medic1.jpg",
         id_loc:1
     }, {
         id: 2,
         name: "Thomas Burleson",
         spec: "Ortoped",
         year: "2017",
-        picture : "https://i228.photobucket.com/albums/ee236/jokuidari/Chocobo-2.jpg",
+        picture : "/images/medic2.jpeg",
         id_loc:2
     }, {
         id: 3,
         name: "Will Button",
         spec: "Pediatru",
         year: "2016",
-        picture : "https://i1001.photobucket.com/albums/af135/lRial/Avatar/karvinen_lomalla.jpg",
+        picture : "/images/medic3.jpg",
         id_loc:3
     }, {
         id: 4,
         name: "Ben Clinkinbeard",
         spec: "Oftalmolog",
         year: "2015",
-        picture : "https://i84.photobucket.com/albums/k17/Flizia/Icons/Animals/thunderbird-v2-64x64.png",
+        picture : "/images/medic4.jpg",
         id_loc:1
     }],
     all: function () {

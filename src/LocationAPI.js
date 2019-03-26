@@ -1,20 +1,20 @@
 const LocationAPI = {
     locatii : [{
         id: 1,
-        name: "Name 1",
-        type: "Type 1",
+        name: "Sangra vita",
+        type: "Blood",
         address: "Loc1",
         picture : "/images/02.png"
     }, {
         id: 2,
-        name: "Name 2",
-        type: "Type 2",
+        name: "Hearth attack",
+        type: "Cardiac",
         address: "Loc 2",
         picture : "/images/03.png"
     }, {
         id: 3,
-        name: "Name 3",
-        type: "Type3",
+        name: "MedComplete",
+        type: "General",
         address: "Loc3",
         picture : "/images/01.png"
     }],

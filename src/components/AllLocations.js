@@ -1,14 +1,12 @@
 import React from 'react'
 import LocationAPI from "../LocationAPI";
-import MyMedia from "./MyMedia";
-import MyCard from "./MyCard";
-import Example from "./test";
+import LocationCard from "./LocationCard";
+import t from './locale';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
+
 
 class AllLocations extends React.Component{
-    // constructor(props){
-    //     super(props)
-    //     // this.handleClick = this.handleClick.bind(this)
-    // }
 
     handleClick  = (id) => {
         this.props.history.push('/medicsByLoc/' + id)
@@ -16,23 +14,20 @@ class AllLocations extends React.Component{
     };
 
     render(){
-        return(
-            <div>
-                <div style={{columnCount: 3,    padding: '2%'}}>
-                            { LocationAPI.all().map(
-                                (medic) => {
-                                    return <MyCard medic = {medic} key = {medic.id} onClick = {this.handleClick}/>
-                                })
-                            }
-
+        const lang= cookies.get('language');
+        return(<div style={{background:"url('/images/bg.jpg')", height:920}}>
+                <div style={{position:'relative', top:60, left:'40%', width:'22%', textAlign:'center'}}>
+                    <h1>{t('locH', lang)}</h1>
+                    <p>{t('locP', lang)}</p>
                 </div>
-
-                <div style={{    padding: '2%'}}>
-                    { LocationAPI.all().map(
-                        (medic) => {
-                            return <MyMedia medic = {medic} key = {medic.id} onClick = {this.handleClick}/>
-                        })
-                    }
+                <div style={{position:'relative', }}>
+                    <div style={{display: 'flex', flexWrap: 'wrap',   padding: '7%'}}>
+                                { LocationAPI.all().map(
+                                    (medic) => {
+                                        return <LocationCard medic = {medic} key = {medic.id} onClick = {this.handleClick}/>
+                                    })
+                               }
+                    </div>
                 </div>
             </div>
 
