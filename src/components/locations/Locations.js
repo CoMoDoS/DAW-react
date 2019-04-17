@@ -1,6 +1,6 @@
 import React from 'react'
 import {Switch, Route} from 'react-router-dom'
-import Location from './Location'
+import Location from '../aux/Location'
 import AllLocations from './AllLocations'
 
 

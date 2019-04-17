@@ -1,5 +1,5 @@
 import React from 'react'
-import MedicAPI from "../MediciAPI";
+import MedicAPI from "../../MediciAPI";
 
 const Medic = (props) => {
     const loc = MedicAPI.getById(parseInt(props.match.params.id, 10));

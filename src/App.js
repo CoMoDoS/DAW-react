@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Route} from "react-router-dom";
-import Home from './Home'
-import Locations from './Locations'
-import MyNavbar from './MyNavbar'
-import Medics from './Medics'
-import MedicsByLoc from "./MedicsByLoc";
+import Home from './components/Home'
+import Locations from './components/locations/Locations'
+import MyNavbar from './components/MyNavbar'
+import Medics from './components/medics/Medics'
+import MedicsByLoc from "./components/medics/MedicsByLoc";
 import {IntlProvider} from "react-intl";
-import Login from "./Login";
+import Login from "./components/Login";
 import Cookies from 'universal-cookie';
+import Profile from "./components/Profile";
 const cookies = new Cookies();
 const deffault = cookies.get('language') == undefined ?'en':deffault ;
 
@@ -30,6 +31,7 @@ class App extends Component {
             <Router>
               <MyNavbar/>
               <Route exact path="/" render={props => <Home {...props} />}/>
+              <Route exact path="/profile/:id" render={props => <Profile {...props} />}/>
               {/*<Route path="/locations" component={Locations}/>*/}
               <Route path="/locations" render={props => <Locations {...props}/>} />
               <Route path="/medics" render={props => <Medics {...props}/>} />

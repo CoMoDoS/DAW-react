@@ -1,6 +1,6 @@
 
 import React from 'react'
-import LocationAPI from '../LocationAPI'
+import LocationAPI from '../../LocationAPI'
 
 
 const Location = (props) => {

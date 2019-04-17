@@ -1,7 +1,7 @@
 import React from 'react'
 import Login from "./Login";
-import Example from "./MyCarousel";
-import t from './locale'
+import Example from "./aux/MyCarousel";
+import t from '../locale'
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 

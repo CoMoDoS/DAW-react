@@ -1,12 +1,33 @@
 import React from 'react'
-import LocationAPI from "../LocationAPI";
 import LocationCard from "./LocationCard";
-import t from './locale';
+import t from '../../locale';
 import Cookies from 'universal-cookie';
+import axios from 'axios';
+
+
 const cookies = new Cookies();
 
 
 class AllLocations extends React.Component{
+    constructor(props) {
+        super(props);
+        this.handleClick = this.handleClick.bind(this);
+        this.state = {
+            locations: []
+        };
+    }
+
+
+    componentDidMount() {
+        axios.get(`http://localhost/php/getLocations.php`)
+            .then(res => {
+
+                const locations = res.data;
+                this.setState({ locations });
+            });
+    }
+
+
 
     handleClick  = (id) => {
         this.props.history.push('/medicsByLoc/' + id)
@@ -22,9 +43,9 @@ class AllLocations extends React.Component{
                 </div>
                 <div style={{position:'relative', }}>
                     <div style={{display: 'flex', flexWrap: 'wrap',   padding: '7%'}}>
-                                { LocationAPI.all().map(
-                                    (medic) => {
-                                        return <LocationCard medic = {medic} key = {medic.id} onClick = {this.handleClick}/>
+                                { this.state.locations.map(
+                                    (location) => {
+                                        return <LocationCard location = {location} key = {location.id} onClick = {this.handleClick}/>
                                     })
                                }
                     </div>

@@ -1,30 +1,75 @@
 import React from "react";
 import './login.css'
-
+import axios from 'axios';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 class Login extends React.Component{
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            login: "",
+            password: ""
+        };
+        // this.handleLogin = this.handleLogin.bind(this);
+    }
+
+    validateForm() {
+        return this.state.email.length > 0 && this.state.password.length > 0;
+    }
+
+    handleChange = event => {
+        this.setState({
+            [event.target.id]: event.target.value
+        });
+    };
+
+    handleLogin = (username, password) => {
+        axios.defaults.withCredentials = true;
+        axios({
+            method: 'post',
+            url: 'http://localhost/php/login.php',
+            data: {
+                username: username,
+                password: password
+            },
+            headers: { 'Content-Type': 'application/json' }
+        }).then((response) => {
+            debugger;
+            console.log(response);
+            if ( response.data[0].response === "OK" || response.data[0].response === "loggedin"){
+                this.props.history.push("/profile/" + response.data[0].id);
+            } else {
+                alert("Wrong credentials");
+            }
+
+        });
+    };
+
     render(){
         return(<div style={{background:"url('/images/bg.jpg')", height:920}}>
-                <div className="wrapper fadeInDown" backgroundImage="/images/banner-bg.jpg">
+                <div className="wrapper fadeInDown" backgroundimage="/images/banner-bg.jpg">
                     <div id="formContent">
 
                         <div className="fadeIn first">
                             <img src="/images/login.png" id="icon" alt="User Icon"/>
                         </div>
 
-                        <form>
-                            <input type="text" id="login" className="fadeIn second" name="login" placeholder="login"/>
-                                <input type="text" id="password" className="fadeIn third" name="login" placeholder="password"/>
-                                    <input type="submit" className="fadeIn fourth" value="Log In"/>
-                        </form>
+                        <div>
+                            <input type="text" id="login" className="fadeIn second" name="login" placeholder="username" value={this.state.login} onChange = {this.handleChange}/>
+                            <input type="password" id="password" className="fadeIn third" name="password" placeholder="password" value={this.state.password} onChange = {this.handleChange}/>
+                            <button className="fadeIn fourth" onClick={() => this.handleLogin(this.state.login, this.state.password)}> Log In </button>
+                        </div>
 
 
                         <div id="formFooter">
-                            <a className="underlineHover" href="#">Forgot Password?</a>
+                            <button className="underlineHover" >Forgot Password?</button>
                         </div>
 
                     </div>
-            </div>
+                </div>
             </div>
         )
     }

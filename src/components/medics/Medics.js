@@ -1,7 +1,7 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import AllMedics from './AllMedics'
-import Medic from './Medic'
+import Medic from '../aux/Medic'
 
 const Medics = () => (
     <Switch>
