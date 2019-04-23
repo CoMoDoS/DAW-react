@@ -1,28 +1,48 @@
 import React from 'react'
-
-import MedicsAPI from "../../MediciAPI";
-import MyMedia from "../aux/MyMedia";
+import MyMedia from "./MyMedia";
 import axios from 'axios';
 
-const MedicsByLoc = (props) => (
-    <div style={{background:"url('/images/bg.jpg')", height:920}}>
-        { MedicsAPI.getByIdLoc(parseInt(props.match.params.idLoc)).map(
-            function(medic){
-                return <MyMedia medic = {medic} key = {medic.id} onClick = {handleClick}/>
-            })
-        }
-    </div>
-);
+class MedicsByLoc extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            doctors: []
+        };
+        this.componentDidMount = this.componentDidMount.bind(this);
+    }
+    componentDidMount() {
 
-function handleClick(id) {
-    console.log("adssssssad " + id);
+        axios.get('http://localhost/php/getDoctorsByIdLoc.php?id=' + this.props.match.params.idLoc)
+            .then(res => {
 
-    axios.get(`http://localhost/php/db.php`)
-        .then(res => {
-            // const posts = res.data.data.children.map(obj => obj.data);
-            console.log(res.data);
-        });
+                const doctors = res.data;
+                this.setState({ doctors });
+            });
+    }
 
-}
+    render(){
+        return(
+            <div style={{background: "url('/images/bg.jpg')", height: 920}}>
+                {this.state.doctors.map(
+                    function (medic) {
+                        return <MyMedia medic={medic} key={medic.id} />
+                    })
+                }
+            </div>
+        )
+    }
+
+};
+//
+// function handleClick(id) {
+//     console.log("adssssssad " + id);
+//
+//     axios.get(`http://localhost/php/getDoctorsByIdLoc.php`)
+//         .then(res => {
+//             // const posts = res.data.data.children.map(obj => obj.data);
+//             console.log(res.data);
+//         });
+//
+// }
 
 export default MedicsByLoc;

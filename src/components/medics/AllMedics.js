@@ -4,6 +4,7 @@ import t from "../../locale";
 import Cookies from 'universal-cookie';
 import MedicCard from "./MedicCard";
 import axios from 'axios';
+import Comment01 from "../Comment01";
 const cookies = new Cookies();
 
 
@@ -48,6 +49,8 @@ class AllMedics extends React.Component {
                         })
                     }
                 </div>
+
+                {/*<Comment/>*/}
             </div>
         )
     }

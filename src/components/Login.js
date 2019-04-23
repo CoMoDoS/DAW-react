@@ -1,5 +1,5 @@
 import React from "react";
-import './login.css'
+// import './login.css'
 import axios from 'axios';
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
@@ -37,10 +37,11 @@ class Login extends React.Component{
             },
             headers: { 'Content-Type': 'application/json' }
         }).then((response) => {
-            debugger;
+
             console.log(response);
             if ( response.data[0].response === "OK" || response.data[0].response === "loggedin"){
                 this.props.history.push("/profile/" + response.data[0].id);
+                window.location.reload();
             } else {
                 alert("Wrong credentials");
             }

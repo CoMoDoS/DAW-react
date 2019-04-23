@@ -2,7 +2,7 @@ import React from 'react'
 import LocationCard from "./LocationCard";
 import t from '../../locale';
 import Cookies from 'universal-cookie';
-import axios from 'axios';
+    import axios from 'axios';
 
 
 const cookies = new Cookies();
