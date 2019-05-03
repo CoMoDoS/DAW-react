@@ -59,6 +59,7 @@ class Profile extends React.Component{
             image : document.getElementById("id_image").value
         };
         debugger;
+        console.log(data);
 
     };
 
@@ -68,9 +69,9 @@ class Profile extends React.Component{
             <div className="container">
                 <div className="fb-profile">
                     <img align="left" className="fb-image-lg" src="/images/banner-bg.jpg"
-                         alt="Profile image example"/>
+                         alt="Profile example"/>
                     <img align="left" className="fb-image-profile thumbnail"
-                         src={this.state.image} alt="Profile image example" style={{height: '140px', width: '170px', borderRadius: '46px'}}/>
+                         src={this.state.image} alt="Profile example" style={{height: '140px', width: '170px', borderRadius: '46px'}}/>
                     <div className="fb-profile-text">
                         <h1>{this.state.name}</h1>
 

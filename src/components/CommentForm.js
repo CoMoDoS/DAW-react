@@ -1,7 +1,6 @@
 import React from 'react';
 import '../css/Comm.css';
-import Test from "../test";
-import '../css/Comm.css';
+import axios from 'axios';
 
 
 class CommentForm extends React.Component {
@@ -31,21 +30,34 @@ class CommentForm extends React.Component {
         return div.innerHTML;
     }
     handleSubmit(e) {
+        debugger;
         e.preventDefault();
-
-        const user = {
-            username: this.escapeHTML(this.state.username),
-            comment: this.escapeHTML(this.state.comment),
-            time: this.formatTime(),
+        var data = {
+            doc_id:this.props.doc_id,
+            content:this.state.comment,
+            rating:5,
+            user_id:6
         }
+
+        axios({
+            method: 'post',
+            url: 'http://localhost/php/insertComment.php',
+            data: data,
+            headers: { 'Content-Type': 'application/json' }
+        }).then((response) => {
+
+            console.log(response);
+            debugger;
+
+        });
 
         // const db = firebase.database().ref('comments');
         // db.push(user);
 
-        this.setState({
-            username: '',
-            comment: ''
-        })
+        // this.setState({
+        //     username: '',
+        //     comment: ''
+        // })
     }
     handleChange(e) {
         this.setState({
@@ -57,18 +69,7 @@ class CommentForm extends React.Component {
             <div className="comments-form">
                 <form onSubmit={this.handleSubmit}>
                     <ul className="ul_comm">
-                        <li className="li_comm">
-                            <input
-                                className="input_comm"
-                                name="username"
-                                type="text"
-                                placeholder="Name"
-                                value={this.state.username}
-                                onChange={this.handleChange}
-                                required
-                            />
-                            {/*<Test/>*/}
-                        </li>
+
                         <li className="li_comm">
                           <textarea
                               className="textarea_comm"

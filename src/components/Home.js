@@ -1,6 +1,4 @@
 import React from 'react'
-import Login from "./Login";
-import Example from "./aux/MyCarousel";
 import t from '../locale'
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
@@ -21,5 +19,3 @@ class Home extends React.Component{
 }
 
 export default Home;
-
-{/*<div style={{background:"url('/images/banner-bg2.jpg')", height:703,backgroundRepeat:'no-repeat'}}> ceva text </div>*/}

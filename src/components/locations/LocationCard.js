@@ -18,7 +18,8 @@ class LocationCard extends React.Component{
                     <div>{t('locAddr', lang)}: {this.props.location.address}</div>
                     <div>{t('locType', lang)}: {this.props.location.type}</div>
                 </div>
-                <a className="btn btn-primary" onClick={() => this.handleClick(this.props.location.id)} style={{marginTop:'10%', marginLeft:'30%'}}>Details</a>
+
+                <button className="btn btn-primary" onClick={() => this.handleClick(this.props.location.id)} style={{marginTop:'10%', marginLeft:'30%'}}>Details</button>
             </div>
         </div>
 

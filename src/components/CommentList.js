@@ -8,7 +8,8 @@ class CommentList extends React.Component {
         super(props);
         this.state = {
             comments: []
-        }
+        };
+        this.componentDidMount = this.componentDidMount.bind(this);
     }
     // componentWillMount() { // [2]
         // const db = firebase.database().ref('comments');
@@ -27,7 +28,8 @@ class CommentList extends React.Component {
         // });
     // }
     componentDidMount() {
-        axios.get(`http://localhost/php/getComentsByIdDoc.php?id=9`)
+        debugger;
+        axios.get('http://localhost/php/getComentsByIdDoc.php?id=' + this.props.medic_id)
             .then(res => {
 
                 const comments = res.data;

@@ -10,7 +10,7 @@ class MedicCard extends React.Component{
     };
     render(){
         const lang= cookies.get('language');
-        return <div className="card" style={{width: '20rem', margin:'0 auto', height:500}}>
+        return <div className="card" style={{width: '20rem', margin:'0 auto', height:500, borderRadius: '100px'}}>
             <img className="card-img-top" src={this.props.medic.image} alt="Card cap" style={{height:'60%', borderRadius:'75%'}}/>
             <div className="card-body">
                 <h5 className="card-title">{this.props.medic.name}</h5>
@@ -20,7 +20,8 @@ class MedicCard extends React.Component{
 
 
                 </div>
-                <a className="btn btn-primary" onClick={() => this.handleClick(this.props.medic.id)} style={{marginTop:'10%', marginLeft:'30%'}}>Details</a>
+
+                <button className="btn btn-primary" onClick={() => this.handleClick(this.props.medic.id)} style={{marginTop:'10%', marginLeft:'30%'}}>Details</button>
             </div>
         </div>
 

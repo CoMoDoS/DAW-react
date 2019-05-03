@@ -1,6 +1,5 @@
 import React from 'react'
 import '../css/Comment.css'
-import {Progress,Media} from 'reactstrap'
 
 class Comment01 extends React.Component{
 

@@ -1,8 +1,8 @@
 import React from "react";
-// import './login.css'
 import axios from 'axios';
-import Cookies from 'universal-cookie';
-const cookies = new Cookies();
+// import Cookies from 'universal-cookie';
+// const cookies = new Cookies();
+import '../css/login.css'
 
 class Login extends React.Component{
 
