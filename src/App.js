@@ -12,15 +12,15 @@ import Profile from "./components/Profile";
 import Register from "./components/Register";
 import RateMedic from "./components/medics/RateMedic";
 const cookies = new Cookies();
-const deffault1 = cookies.get('language') === undefined ? 'en':deffault1 ;
-const deffault2 = cookies.get('PHPSESSID') === undefined ? false : true ;
+// const deffault1 = cookies.get('language') === undefined ? 'en':deffault1 ;
+// const deffault2 = cookies.get('PHPSESSID') === undefined ? false : true ;
 
 class App extends Component {
     constructor(props){
         super(props);
         this.state = {
-            language : deffault1,
-            logged:deffault2
+            language : cookies.get('language') === undefined ? 'en':'ro',
+            logged:cookies.get('PHPSESSID') === undefined ? false : true
         };
 
     }

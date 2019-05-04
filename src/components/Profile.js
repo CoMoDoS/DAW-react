@@ -27,6 +27,7 @@ class Profile extends React.Component{
         var a = cookies.get("PHPSESSID");
 
         if ( a != null) {
+
             axios.get(`http://localhost/php/getUserById.php?id=` + this.props.match.params.id)
                 .then(res => {
 
@@ -51,16 +52,39 @@ class Profile extends React.Component{
     }
 
     handleSubmit = () => {
-        var data = {
-            email : document.getElementById("id_email").value,
-            name : document.getElementById("id_name").value,
-            password : document.getElementById("id_password").value,
-            problem : document.getElementById("id_problem").value,
-            image : document.getElementById("id_image").value
-        };
-        debugger;
-        console.log(data);
 
+
+        var email = document.getElementById("id_email").value;
+        var name = document.getElementById("id_name").value;
+        var password = document.getElementById("id_password").value;
+        var problem = document.getElementById("id_problem").value;
+        var image = document.querySelector('[type=file]').files[0]; //document.getElementById("id_image").value;
+
+        debugger;
+
+
+
+        var bodyFormData = new FormData();
+        bodyFormData.set('email', email);
+        bodyFormData.set('name', name);
+        bodyFormData.set('password', password);
+        bodyFormData.set('problem', problem);
+        bodyFormData.append('image', image);
+        axios({
+            method: 'post',
+            url: 'http://localhost/php/updateUser.php',
+            data: bodyFormData,
+            withCredentials: true,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded' }
+        })
+            .then(function (response) {
+                //handle success
+                console.log(response);
+            })
+            .catch(function (response) {
+                //handle error
+                console.log(response);
+            });
     };
 
 
@@ -77,7 +101,7 @@ class Profile extends React.Component{
 
                     </div>
                 </div>
-                <Form>
+                <Form id="form_id" action="http://localhost/php/updateUser.php" method="POST">
                     <FormGroup row>
                         <Label for="exampleName" sm={2}>Name</Label>
                         <Col sm={10}>
@@ -112,7 +136,7 @@ class Profile extends React.Component{
                     <FormGroup row>
                         <Label for="exampleFile" sm={2}>Image</Label>
                         <Col sm={10}>
-                            <Input type="file" name="file" id="id_image" />
+                            <Input type="file" name="image" id="id_image" />
                             <FormText color="muted">
                                 Chose an image.
                             </FormText>

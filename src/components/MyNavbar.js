@@ -103,7 +103,7 @@ class MyNavbar extends React.Component {
                     <div>{this.state.logged ? ""  : <div style={{width:'20px'}}></div> }</div>
                     <div>{this.state.logged ? ""  : <Link to={'/register'} className="btn btn-light" id="id_register_btn">Register </Link> }</div>
                     <div style={{width:'20px'}}></div>
-                    <button type="button" className="btn btn-light" onClick={() => this.logout()}>Logout</button>
+                    <div>{this.state.logged ? <button type="button" className="btn btn-light" onClick={() => this.logout()}>Logout</button> : ""  }</div>
 
                 </div>
             </nav>

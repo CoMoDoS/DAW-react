@@ -1,8 +1,5 @@
 import React from 'react';
-import CommentList from "../CommentList";
-import CommentForm from "../CommentForm";
 import '../../css/Comm.css';
-// import Test from "../../test";
 
 class MyMedia extends React.Component{
     handleClick(id){

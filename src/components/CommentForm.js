@@ -24,6 +24,7 @@ class CommentForm extends React.Component {
         let now = new Date().toLocaleString('en-US', options);
         return now;
     }
+
     escapeHTML(html) { // [1]
         const div = document.createElement('div');
         div.textContent = html;
@@ -37,7 +38,7 @@ class CommentForm extends React.Component {
             content:this.state.comment,
             rating:5,
             user_id:6
-        }
+        };
 
         axios({
             method: 'post',
@@ -47,7 +48,8 @@ class CommentForm extends React.Component {
         }).then((response) => {
 
             console.log(response);
-            debugger;
+            if ( response.data[0].response === "OK" )
+                alert("Comment posted");
 
         });
 

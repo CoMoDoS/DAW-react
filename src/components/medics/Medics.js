@@ -1,7 +1,6 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import AllMedics from './AllMedics'
-import Medic from '../aux/Medic'
 import MedicsByLoc from "./MedicsByLoc";
 import RateMedic from "./RateMedic";
 

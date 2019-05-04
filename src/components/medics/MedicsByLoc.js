@@ -1,9 +1,5 @@
 import React from 'react'
-import MyMedia from "./MyMedia";
 import axios from 'axios';
-import CommentForm from "../CommentForm";
-import CommentList from "../CommentList";
-import Comment from "../Comment";
 import MedicCard from "./MedicCard";
 
 class MedicsByLoc extends React.Component{

@@ -27,7 +27,7 @@ class Login extends React.Component{
     };
 
     handleLogin = (username, password) => {
-        axios.defaults.withCredentials = true;
+
         axios({
             method: 'post',
             url: 'http://localhost/php/login.php',
@@ -35,6 +35,7 @@ class Login extends React.Component{
                 username: username,
                 password: password
             },
+            withCredentials: true,
             headers: { 'Content-Type': 'application/json' }
         }).then((response) => {
 
@@ -48,7 +49,7 @@ class Login extends React.Component{
 
         });
     };
-
+//"3o694cg639o4vrf0ra7esgh8uq"
     render(){
         return(<div style={{background:"url('/images/bg.jpg')", height:920}}>
                 <div className="wrapper fadeInDown" backgroundimage="/images/banner-bg.jpg">
