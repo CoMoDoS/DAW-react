@@ -1,4 +1,5 @@
 import React from 'react';
+import StarRatingComponent from 'react-star-rating-component';
 import '../../css/Comm.css';
 
 class MyMedia extends React.Component{
@@ -21,6 +22,12 @@ class MyMedia extends React.Component{
                             <h5 className="mt-0">{this.props.medic.name}</h5>
                             <p>{this.props.medic.type}</p>
                             <p>{this.props.medic.year}</p>
+                            <StarRatingComponent
+                                name="rate1"
+                                starCount={5}
+                                value={parseInt(this.props.medic.rating / this.props.medic.nr_comms) }
+
+                            />
                         </div>
 
                     </div>

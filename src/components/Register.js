@@ -5,7 +5,7 @@ import {Button, Col, Form, FormGroup, Input, Label} from "reactstrap";
 class Register extends React.Component{
 
     register = () => {
-        debugger;
+
         let username = document.getElementById("id_name").value;
         let email = document.getElementById("id_email").value;
         let password1 = document.getElementById("id_password1").value;
@@ -17,7 +17,9 @@ class Register extends React.Component{
             let data = {
                 username:username,
                 email:email,
-                password:password1
+                password:password1,
+                image:"/images/login.png"
+
             };
             axios({
                 method: 'post',
@@ -28,7 +30,7 @@ class Register extends React.Component{
 
                 console.log(response);
                 if ( response.data[0].response === "OK" || response.data[0].response === "loggedin"){
-                    this.props.history.push("/profile/" + response.data[0].id);
+                    this.props.history.push("/login");
                     // window.location.reload();
                 } else {
                     alert("Wrong credentials");
@@ -40,7 +42,7 @@ class Register extends React.Component{
     };
 
     render() {
-        return(<Form>
+        return(<Form style={{margin:'50px auto', maxWidth:1000, textAlign:'center'}} >
                 <FormGroup row>
                     <Label for="exampleName" sm={2}>Name</Label>
                     <Col sm={10}>

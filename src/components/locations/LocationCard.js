@@ -10,8 +10,8 @@ class LocationCard extends React.Component{
     };
     render(){
         const lang= cookies.get('language');
-        return <div className="card" style={{width: '23rem', margin:'0 auto'}}>
-            <img className="card-img-top" src={this.props.location.image} alt="Card cap"/>
+        return <div className="card" style={{width: '23rem', margin:'0 auto', borderRadius: '100px'}}>
+            <img className="card-img-top" src={this.props.location.image} alt="Card cap" style={{borderRadius: '100px'}}/>
             <div className="card-body">
                 <h5 className="card-title">{this.props.location.name}</h5>
                 <div>

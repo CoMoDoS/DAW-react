@@ -40,7 +40,7 @@ class RateMedic extends React.Component{
                         <div className="comments-list">
                             {this.state.comments.map(
                                 (comm,index) => {
-                                    return <Comment key={index} username={comm.user} comment={comm.content}/>
+                                    return <Comment key={index} username={comm.user} comment={comm.content} rating={parseInt(comm.rating)}/>
                                 })
                             }
                         </div>

@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import Cookies from 'universal-cookie';
 import t from '../locale'
 import axios from 'axios'
+import '../css/navbar.css'
 const cookies = new Cookies();
 
 
@@ -12,7 +13,8 @@ class MyNavbar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            logged:""
+            logged:"",
+            admin:""
         }
     }
 
@@ -50,6 +52,16 @@ class MyNavbar extends React.Component {
 
 
     };
+    logoutAdmin = () => {
+        axios.get('http://localhost:3002/logout')
+            .then(res => {
+                cookies.remove("user_id",{ path: '/' });
+                window.location.reload();
+                // this.setState({logged:false})
+            })
+
+
+    };
 
     componentDidMount() {
         if ( cookies.get("PHPSESSID") != null ){
@@ -60,6 +72,16 @@ class MyNavbar extends React.Component {
         } else  {
             this.setState({
                 logged:false
+            });
+        }
+        if ( cookies.get("user_id") != null ){
+            this.setState({
+                admin:true
+            });
+            document.getElementById("id_loginadmin_btn").style.visibility = 'hidden';
+        } else  {
+            this.setState({
+                admin:false
             });
         }
 
@@ -89,21 +111,38 @@ class MyNavbar extends React.Component {
                         <li className="nav-item">
                             <Link to={'/medics'} className="nav-link"> {t('navbar2', lang)} </Link><span className="sr-only">(current)</span>
                         </li>
+                        <li className="nav-item">
+                            <div>{this.state.logged ? <Link to={'/profile'} className="nav-link"> {t('navbar3', lang)} </Link> : ""}</div><span className="sr-only">(current)</span>
+                        </li>
+
+
                     </ul>
 
-                    <button type="button" className="btn btn-light"  >
+                    <button type="button" className="btn btn-light"  style={{padding: '5px'}}>
                         <img src="/images/en.jpg" style={{height: '20px'}} onClick={this.handleEnClick} alt='EN'/>
                     </button>
                     <div style={{width:'10px'}}></div>
-                    <button type="button" className="btn btn-light">
+                    <button type="button" className="btn btn-light" style={{padding: '5px'}}>
                         <img src="/images/ro.png" style={{height: '20px'}} onClick={this.handleRoClick} alt='RO'/>
                     </button>
                     <div style={{width:'20px'}}></div>
-                    <div>{this.state.logged ? ""  : <Link to={'/login'} className="btn btn-light" id="id_login_btn" >Login </Link> }</div>
-                    <div>{this.state.logged ? ""  : <div style={{width:'20px'}}></div> }</div>
-                    <div>{this.state.logged ? ""  : <Link to={'/register'} className="btn btn-light" id="id_register_btn">Register </Link> }</div>
-                    <div style={{width:'20px'}}></div>
-                    <div>{this.state.logged ? <button type="button" className="btn btn-light" onClick={() => this.logout()}>Logout</button> : ""  }</div>
+
+
+
+                    <div className="dropdown">
+                        <button className="dropbtn">
+                            <img src="/images/button.png" style={{height: '25px'}} alt="menu"/>
+                        </button>
+                        <div className="dropdown-content">
+                            <div>{this.state.logged ? ""  : <Link to={'/login'} className="btn btn-light" id="id_login_btn" >Login </Link> }</div>
+                            <div>{this.state.admin ? ""  : <Link to={'/adminlogin'} className="btn btn-light" id="id_loginadmin_btn" >Login admin </Link> }</div>
+                            {/*<div>{this.state.logged ? ""  : <div style={{width:'20px'}}></div> }</div>*/}
+                            <div>{this.state.logged ? ""  : <Link to={'/register'} className="btn btn-light" id="id_register_btn">Register </Link> }</div>
+                            {/*<div style={{width:'20px'}}></div>*/}
+                            <div>{this.state.logged ? <button type="button" className="btn btn-light" onClick={() => this.logout()}>Logout</button> : ""  }</div>
+                            <div>{this.state.admin ? <button type="button" className="btn btn-light" onClick={() => this.logoutAdmin()}>Logout admin</button> : ""  }</div>
+                        </div>
+                    </div>
 
                 </div>
             </nav>

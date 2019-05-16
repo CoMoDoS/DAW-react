@@ -29,7 +29,7 @@
 				$password = $obj->password;
 			}
 
-			$sql = "SELECT * FROM user WHERE email = '$username'";
+			$sql = "SELECT * FROM users WHERE email = '$username'";
 			$result = $conn->query($sql);
 			
 
@@ -39,7 +39,9 @@
 				if(isset($_SESSION["loggedin"]) && $_SESSION["email"] === $row[1]){
 		    		$post_item = array(
 					"response" => "loggedin",
-					"id" => $_SESSION["id"]);
+					"id" => $_SESSION["id"],
+					"sess_id" => session_id()
+				);
 					array_push($posts_arr, $post_item);
 					    
 				}else { 
@@ -53,7 +55,9 @@
 
 						$post_item = array(
 						"response" => "OK",
-						"id" => $row[0]);
+						"id" => $row[0],
+						"sess_id" => session_id()
+					);
 						array_push($posts_arr, $post_item);
 					}else{
 						$post_item = array(

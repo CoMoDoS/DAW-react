@@ -13,18 +13,20 @@
 		if (isset($_GET['id'])) {
 			$id = $_GET['id'];
 
-			$sql  = "SELECT rating,content FROM `comment` WHERE doctor_id=$id";
+			$sql  = "SELECT rating, content, (SELECT name FROM user_details ud where ud.id_user=c.user_id), hide FROM comments c WHERE doctor_id=$id";
 			$result = $conn->query($sql);
 			
 			if ( $result ) {
 				while ($row = $result->fetch_row()) {
-						
+					if ( $row[3] == 0 ){		
 			      $post_item = array(
 			        'rating' => $row[0],
-			        'content' => $row[1]
+			        'content' => $row[1],
+			        'user' => $row[2]
 			        );
 			      array_push($posts_arr, $post_item);
-				  }
+			    }
+			  }
 			}else{
 			  $post_item = array(
 			  	'response' => "Error query");

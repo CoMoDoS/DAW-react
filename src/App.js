@@ -11,6 +11,9 @@ import Cookies from 'universal-cookie';
 import Profile from "./components/Profile";
 import Register from "./components/Register";
 import RateMedic from "./components/medics/RateMedic";
+import Admin from "./components/admin";
+import UserEdit from "./components/UnitEdit";
+import AdminLogin from "./components/AdminLogin";
 const cookies = new Cookies();
 // const deffault1 = cookies.get('language') === undefined ? 'en':deffault1 ;
 // const deffault2 = cookies.get('PHPSESSID') === undefined ? false : true ;
@@ -46,15 +49,15 @@ class App extends Component {
             <Router>
               <MyNavbar/>
               <Route exact path="/" render={props => <Home {...props} />}/>
-              <Route exact path="/profile/:id" render={props => <Profile {...props} />}/>
-              {/*<Route path="/locations" component={Locations}/>*/}
+              <Route exact path="/profile" render={props => <Profile {...props} />}/>
+              <Route path="/admin" component={props => <Admin {...props}/>}/>
               <Route path="/locations" render={props => <Locations {...props}/>} />
               <Route path="/medics" render={props => <Medics {...props}/>} />
               <Route path="/medicsByLoc/:idLoc" render={props => <MedicsByLoc {...props}/>} />
               <Route path="/login" render={props => <Login {...props}/>} />
               <Route path="/register" render={props => <Register {...props}/>} />
               <Route path="/medicDetails/:id" render={props => <RateMedic {...props}/>} />
-              {/*<Route path="/medicsByLoc/:idLoc" component={MedicsByLoc}/>*/}
+              <Route path="/adminlogin" component={props => <AdminLogin {...props}/>}/>
             </Router>
         </IntlProvider>
     );

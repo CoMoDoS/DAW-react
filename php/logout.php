@@ -9,7 +9,7 @@
     header('Access-Control-Allow-Credentials: true');
 
 	// echo implode(" ",$_SESSION);
-	print_r($_SESSION);
+	// print_r($_SESSION);
 	// Unset all of the session variables
 	$_SESSION = array();
 	 

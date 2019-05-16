@@ -17,12 +17,13 @@
 		$email = $obj->email;
 		$password = $obj->password;
 		$name = $obj->username;
+		$image = $obj->image;
 
-		$sql5 = "SELECT max(id) from user";
+		$sql5 = "SELECT max(id) from users";
 		
-		$sql3 = "SELECT u.id, u.email, u.password, u.type, ud.name, ud.problem, ud.image FROM user u INNER JOIN user_details ud on ud.id_user=u.id where u.id=(select max(id) from user)";
-		$sql2 = "INSERT INTO user (email,password,type) VALUES ('$email','$password','u')";
-		$sql1 = "SELECT * FROM user WHERE email = '$email'";
+		$sql3 = "SELECT u.id, u.email, u.password, u.admin, ud.name, ud.problem, ud.image FROM users u INNER JOIN user_details ud on ud.id_user=u.id where u.id=(select max(id) from users)";
+		$sql2 = "INSERT INTO users (email,password,admin) VALUES ('$email','$password','u')";
+		$sql1 = "SELECT * FROM users WHERE email = '$email'";
 		$result1 = $conn->query($sql1);
 		$row1 = $result1->fetch_row();
 		if ( !is_null($row1)){
@@ -35,7 +36,7 @@
 				$result5 = $conn->query($sql5);
 				$row5 = $result5->fetch_row();
 				$id = $row5[0];
-				$sql4 = "INSERT INTO user_details (id_user, name, problem, image) VALUES ($id , '$name', ' ', ' ')";
+				$sql4 = "INSERT INTO user_details (id_user, name, problem, image) VALUES ($id , '$name', ' ', '$image')";
 				
 				$result4 = $conn->query($sql4);
 				$result3 = $conn->query($sql3);

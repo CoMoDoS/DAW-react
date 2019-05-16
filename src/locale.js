@@ -13,7 +13,8 @@ const en = {
     locAddr:"Address",
     locType:"Type",
     navbar1:"Locations",
-    navbar2:"Medics"
+    navbar2:"Medics",
+    navbar3:"Profile"
 };
 
 const ro = {
@@ -29,7 +30,8 @@ const ro = {
     locAddr:"Adresa",
     locType:"Specializare",
     navbar1:"Locatii",
-    navbar2:"Medici"
+    navbar2:"Medici",
+    navbar3:"Profil"
 };
 
 export default localize({ en, ro });

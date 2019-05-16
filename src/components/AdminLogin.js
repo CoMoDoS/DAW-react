@@ -4,7 +4,7 @@ import axios from 'axios';
 // const cookies = new Cookies();
 import '../css/login.css'
 
-class Login extends React.Component{
+class AdminLogin extends React.Component{
 
     constructor(props) {
         super(props);
@@ -27,28 +27,34 @@ class Login extends React.Component{
     };
 
     handleLogin = (username, password) => {
+            axios.defaults.withCredentials = true;
+            axios({
+                method: 'post',
+                url: 'http://localhost:3002/find_user',
+                data: {
+                    "email":username,
+                    "password":password
+                },
 
-        axios.defaults.withCredentials = true;
-        axios({
-            method: 'post',
-            url: 'http://localhost/php/login.php',
-            data: {
-                username: username,
-                password: password
-            },
+                headers: { 'Content-Type': 'application/json' }
+            }).then((response) => {
 
-            headers: {'Content-Type': 'application/json'}
-        }).then((response) => {
+                console.log(response);
+                if ( response.data.length === 0 ){
+                    alert("Not enough rights");
+                } else {
+                    // this.state.logged = "dasdasd";
+                    this.props.history.push("/admin");
+                    window.location.reload();
+                }
+            })
+                .catch(function (response) {
+                    //handle error
+                    console.log(response);
+                    alert("Wrong data");
+                });
 
-            console.log(response);
-            if (response.data[0].response === "OK" || response.data[0].response === "loggedin") {
-                this.props.history.push("/profile");
-                window.location.reload();
-            } else {
-                alert("Wrong credentials");
-            }
 
-        });
 
     };
 //"3o694cg639o4vrf0ra7esgh8uq"
@@ -79,4 +85,4 @@ class Login extends React.Component{
     }
 
 }
-export default Login;
+export default AdminLogin;

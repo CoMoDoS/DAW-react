@@ -9,7 +9,7 @@
   header('Access-Control-Allow-Credentials: true');
 
 
-	$sql = "SELECT * FROM doctor";
+	$sql = "SELECT * FROM doctors";
 
 
   $posts_arr = array();

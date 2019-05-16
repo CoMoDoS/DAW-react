@@ -12,7 +12,7 @@ class MedicsByLoc extends React.Component{
         // this.componentDidMount = this.componentDidMount.bind(this);
     }
     componentDidMount = () => {
-        debugger;
+
         axios.get('http://localhost/php/getDoctorsByIdLoc.php?id=' + this.props.match.params.idLoc)
             .then(res => {
 

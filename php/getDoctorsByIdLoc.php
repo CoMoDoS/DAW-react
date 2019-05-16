@@ -13,7 +13,7 @@
 		if (isset($_GET['id'])) {
 			$id = $_GET['id'];
 
-			$sql  = "SELECT d.id, d.name, d.year, d.type, d.image FROM doctor d INNER JOIN unit_doctor ud on ud.id_doctor=d.id WHERE ud.id_unit=$id";
+			$sql  = "SELECT d.id, d.name, d.year, d.speciality, d.image FROM doctors d INNER JOIN unit_doctors ud on ud.id_doctor=d.id WHERE ud.id_unit=$id";
 			$result = $conn->query($sql);
 			
 			if ( $result ) {

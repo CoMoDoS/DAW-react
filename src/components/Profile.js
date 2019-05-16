@@ -27,8 +27,8 @@ class Profile extends React.Component{
         var a = cookies.get("PHPSESSID");
 
         if ( a != null) {
-
-            axios.get(`http://localhost/php/getUserById.php?id=` + this.props.match.params.id)
+            axios.defaults.withCredentials = true;
+            axios.get('http://localhost/php/getUserById.php')
                 .then(res => {
 
                     console.log(res);
@@ -60,7 +60,7 @@ class Profile extends React.Component{
         var problem = document.getElementById("id_problem").value;
         var image = document.querySelector('[type=file]').files[0]; //document.getElementById("id_image").value;
 
-        debugger;
+
 
 
 
@@ -70,16 +70,17 @@ class Profile extends React.Component{
         bodyFormData.set('password', password);
         bodyFormData.set('problem', problem);
         bodyFormData.append('image', image);
+        axios.defaults.withCredentials = true;
         axios({
             method: 'post',
             url: 'http://localhost/php/updateUser.php',
             data: bodyFormData,
-            withCredentials: true,
-            headers: {'Content-Type': 'application/x-www-form-urlencoded' }
+            headers: {'Content-Type': 'multipart/form-data' }
         })
             .then(function (response) {
                 //handle success
                 console.log(response);
+                window.location.reload();
             })
             .catch(function (response) {
                 //handle error
