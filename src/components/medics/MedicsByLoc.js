@@ -1,12 +1,16 @@
 import React from 'react'
 import axios from 'axios';
 import MedicCard from "./MedicCard";
+import {
+    BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
+} from 'recharts';
 
 class MedicsByLoc extends React.Component{
     constructor(props){
         super(props);
         this.state = {
             doctors: [],
+            rating:[]
 
         };
         // this.componentDidMount = this.componentDidMount.bind(this);
@@ -19,6 +23,28 @@ class MedicsByLoc extends React.Component{
                 const doctors = res.data;
                 this.setState({ doctors });
             });
+
+        axios({
+            method: 'get',
+            url: 'http://localhost/php/unitsDoctorRating.php',
+            headers: { 'Content-Type': 'application/json' }
+        }).then((response) => {
+            var a = response.data;
+            var b = a.filter( aux => aux.id_unit == this.props.match.params.idLoc);
+            var c = b.map( (aux) => {
+                    return {
+                        'name': aux.unitname,
+                        'doctor': aux.doctor,
+                        'rating': aux.rating / aux.nr_comms
+                    }
+
+            });
+            debugger;
+            console.log(c);
+            this.setState({rating:c})
+
+
+        });
     };
 
     handleClick = (id) => {
@@ -37,6 +63,22 @@ class MedicsByLoc extends React.Component{
                         })
                     }
                 </div>
+                <BarChart
+                    width={500}
+                    height={300}
+                    data={this.state.rating}
+                    margin={{
+                        top: 5, right: 30, left: 20, bottom: 5,
+                    }}
+                >
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="doctor" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Bar dataKey="rating" fill="#8884d8" />
+
+                </BarChart>
             </div>
 
         )
