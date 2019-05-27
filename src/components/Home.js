@@ -15,8 +15,8 @@ class Home extends React.Component{
         super();
         this.state = {
             rating1:[],
-            lat:"",
-            long:"",
+            lat:0,
+            long:0,
             addresses:[]
         };
 
@@ -36,7 +36,7 @@ class Home extends React.Component{
                     'unitname':aux.unitname,
                     'rating':aux.rating/aux.nr_comms
                 }
-            })
+            });
             console.log(response);
             this.setState({rating1:b})
 
@@ -45,8 +45,11 @@ class Home extends React.Component{
         var geoSuccess = (position) => {
             startPos = position;
 
-            this.setState({lat:startPos.coords.latitude});
-            this.setState({long:startPos.coords.longitude});
+            this.setState({
+                lat:startPos.coords.latitude,
+                long:startPos.coords.longitude
+            });
+
         };
 
         navigator.geolocation.getCurrentPosition(geoSuccess);
@@ -61,7 +64,7 @@ class Home extends React.Component{
             locations = response.data;
             var aux = locations.map( loc => loc.location.split('+') );
             this.setState({addresses:aux});
-            debugger;
+
 
         });
 
@@ -110,13 +113,13 @@ class Home extends React.Component{
                                 />
                                 {this.state.addresses.map( loc => {
                                     return (
-                                        <Marker
+                                        <Marker key={loc[0]}
                                         onLoad={marker => {
                                             console.log('marker: ', marker)
                                         }}
                                         position={{
-                                            lat: parseInt(loc[0]),
-                                            lng: parseInt(loc[1])
+                                            lat: parseFloat(loc[0]),
+                                            lng: parseFloat(loc[1])
                                         }}
                                     />)
                                 })}
